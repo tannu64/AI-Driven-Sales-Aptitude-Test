@@ -1,0 +1,220 @@
+/* Main Styles for AI-Driven Sales Aptitude Test */
+
+/* Custom Variables */
+:root {
+    --primary-color: #4a6fdc;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --info-color: #17a2b8;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --body-bg: #f5f7fa;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Base Styles */
+body {
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    background-color: var(--body-bg);
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, var(--primary-color), #2a4caf);
+    padding: 2rem 0;
+}
+
+header h1 {
+    font-weight: 700;
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3a5bbf;
+    border-color: #3a5bbf;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Test Interface Styles */
+.question-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+.question-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.question-options {
+    margin-bottom: 1.5rem;
+}
+
+.option-item {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-item:hover {
+    background-color: #f5f5f5;
+}
+
+.option-item.selected {
+    background-color: #e6eeff;
+    border-color: var(--primary-color);
+}
+
+/* Progress Bar */
+.progress {
+    height: 0.5rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.progress-bar {
+    background-color: var(--primary-color);
+}
+
+/* Results Page Styles */
+.results-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+.score-card {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.score-value {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.score-label {
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+
+.category-score {
+    margin-bottom: 0.5rem;
+}
+
+.category-name {
+    font-weight: 500;
+}
+
+.category-bar {
+    height: 0.5rem;
+    background-color: #e0e0e0;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+}
+
+.category-progress {
+    height: 100%;
+    border-radius: 1rem;
+    background-color: var(--primary-color);
+}
+
+/* Feedback Sections */
+.feedback-section {
+    margin-bottom: 2rem;
+}
+
+.feedback-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.feedback-item {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 4px 4px 0;
+}
+
+.strengths .feedback-item {
+    border-left-color: var(--success-color);
+}
+
+.improvements .feedback-item {
+    border-left-color: var(--warning-color);
+}
+
+.recommendations .feedback-item {
+    border-left-color: var(--info-color);
+}
+
+/* Footer Styles */
+footer {
+    padding: 2rem 0;
+    background-color: var(--dark-color);
+    color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .question-container, .results-container {
+        padding: 1.5rem;
+    }
+    
+    .score-value {
+        font-size: 2.5rem;
+    }
+} 

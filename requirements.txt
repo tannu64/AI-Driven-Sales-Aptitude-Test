@@ -1,0 +1,35 @@
+# Web Framework
+flask==3.1.0
+flask-cors==4.0.0
+
+# Data Processing and AI
+numpy==1.26.0
+pandas
+scikit-learn==1.3.2
+tensorflow
+transformers
+nltk
+
+# Database
+sqlalchemy
+flask-sqlalchemy==3.1.1
+alembic
+
+# Testing and Development
+pytest==8.3.5
+black
+flake8
+
+# Visualization
+matplotlib
+seaborn
+
+# Utilities
+python-dotenv==1.0.0
+tqdm
+
+# Additional dependencies
+click==8.1.8
+werkzeug==3.0.1
+jinja2==3.1.3
+itsdangerous==2.1.2 

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Driven Sales Aptitude Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4">AI-Driven Sales Aptitude Test</h1>
+            <p class="lead">Discover your sales potential with our advanced psychometric assessment</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section class="row">
+            <div class="col-md-6">
+                <h2>About the Test</h2>
+                <p>
+                    Our AI-powered sales aptitude test combines traditional psychometric principles with 
+                    cutting-edge artificial intelligence to provide a comprehensive assessment of your 
+                    sales capabilities.
+                </p>
+                <p>
+                    Unlike conventional assessments, our test adapts to your responses in real-time, 
+                    creating a personalized experience that more accurately evaluates your unique strengths 
+                    and areas for improvement.
+                </p>
+                <a href="/test" class="btn btn-primary btn-lg mt-3">Start the Test</a>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">What You'll Discover</h3>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Your natural sales strengths</li>
+                            <li class="list-group-item">Areas for potential improvement</li>
+                            <li class="list-group-item">Recommended sales roles that match your profile</li>
+                            <li class="list-group-item">Personalized development suggestions</li>
+                            <li class="list-group-item">How you compare to top-performing sales professionals</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row mt-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4">How It Works</h2>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h5">1. Take the Assessment</h3>
+                                <p>Complete our interactive assessment with various question types designed to evaluate different aspects of sales aptitude.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h5">2. AI Analysis</h3>
+                                <p>Our AI algorithms analyze your responses, identifying patterns and insights that go beyond traditional scoring methods.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h5">3. Receive Personalized Results</h3>
+                                <p>Get immediate feedback with detailed insights about your sales profile and actionable recommendations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2023 AI-Driven Sales Aptitude Test. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Sales Aptitude Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-4">
+        <div class="container">
+            <h1>Your Sales Aptitude Results</h1>
+            <p class="lead mb-0">AI-powered analysis of your sales potential</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <!-- Overall Score -->
+        <div class="results-container text-center mb-4">
+            <h2>Overall Assessment</h2>
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <div class="score-card">
+                        <div class="score-value">{{ result.scores.get('overall', 0)|round(1) if result and result.scores else 0 }}</div>
+                        <div class="score-label">Overall Score</div>
+                    </div>
+                </div>
+                <div class="col-md-8 text-start">
+                    <h3 class="h4 mb-3">{{ result.analysis.get('overall_assessment', 'Assessment not available') if result and result.analysis else 'Assessment not available' }}</h3>
+                    <p>Based on your responses, our AI analysis has identified your key strengths and areas for development in sales aptitude.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Category Scores -->
+        <div class="results-container mb-4">
+            <h2 class="mb-4">Detailed Scores by Category</h2>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- Category Score Bars -->
+                    <div class="category-scores">
+                        {% if result and result.scores %}
+                            {% for category, score in result.scores.items() %}
+                                {% if category != 'overall' %}
+                                    <div class="category-score">
+                                        <div class="d-flex justify-content-between">
+                                            <span class="category-name">{{ categories.get(category, category) }}</span>
+                                            <span>{{ score|round(1) }}/5.0</span>
+                                        </div>
+                                        <div class="category-bar">
+                                            <div class="category-progress" style="width: {{ (score / 5) * 100 }}%"></div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <p>No category scores available.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Radar Chart -->
+                    <div class="chart-container">
+                        <canvas id="skills-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Strengths and Areas for Improvement -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="results-container strengths">
+                    <h2>Your Strengths</h2>
+                    {% if feedback and feedback.get('strengths', []) %}
+                        {% for strength in feedback.get('strengths', []) %}
+                            <div class="feedback-item">{{ strength }}</div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No specific strengths identified.</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="results-container improvements">
+                    <h2>Areas for Development</h2>
+                    {% if feedback and feedback.get('areas_for_improvement', []) %}
+                        {% for area in feedback.get('areas_for_improvement', []) %}
+                            <div class="feedback-item">{{ area }}</div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No specific areas for improvement identified.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recommendations -->
+        <div class="results-container recommendations mb-4">
+            <h2>Personalized Recommendations</h2>
+            {% if feedback and feedback.get('recommendations', []) %}
+                {% for recommendation in feedback.get('recommendations', []) %}
+                    <div class="feedback-item">{{ recommendation }}</div>
+                {% endfor %}
+            {% else %}
+                <p>No specific recommendations available.</p>
+            {% endif %}
+        </div>
+        
+        <!-- Next Steps -->
+        <div class="results-container mb-4">
+            <h2>Next Steps</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body text-center">
+                            <h3 class="h5">Save Your Results</h3>
+                            <p>Download a PDF report of your complete assessment results.</p>
+                            <button class="btn btn-outline-primary">Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body text-center">
+                            <h3 class="h5">Development Resources</h3>
+                            <p>Access curated resources to improve in your development areas.</p>
+                            <button class="btn btn-outline-primary">View Resources</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body text-center">
+                            <h3 class="h5">Retake the Test</h3>
+                            <p>Track your progress by retaking the assessment in 3-6 months.</p>
+                            <a href="/" class="btn btn-outline-primary">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-3">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2023 AI-Driven Sales Aptitude Test. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script>
+        // Initialize radar chart for skills visualization
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('skills-chart').getContext('2d');
+            
+            // Extract categories and scores from the result
+            const categories = [];
+            const scores = [];
+            
+            {% if result and result.scores %}
+                {% for category, score in result.scores.items() %}
+                    {% if category != 'overall' %}
+                        categories.push('{{ categories.get(category, category) }}');
+                        scores.push({{ score }});
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            
+            const skillsChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: categories,
+                    datasets: [{
+                        label: 'Your Skills',
+                        data: scores,
+                        backgroundColor: 'rgba(74, 111, 220, 0.2)',
+                        borderColor: 'rgba(74, 111, 220, 1)',
+                        pointBackgroundColor: 'rgba(74, 111, 220, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(74, 111, 220, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 5
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
